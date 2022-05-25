@@ -1,0 +1,689 @@
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script
+    src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<div id="map"></div>
+<style>
+    html,
+    body,
+    #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script>
+    function initMap() {
+        // map options
+        var markers = [
+    {
+        "coords": {
+            "lat": 41.3722574,
+            "lng": 2.1585314
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3636056,
+            "lng": 2.1523914
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4946642,
+            "lng": 2.3591531
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4805684,
+            "lng": 2.3147677
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4378689,
+            "lng": 2.196618
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3919671,
+            "lng": 2.1757278
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3876262,
+            "lng": 2.0714223
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2570604,
+            "lng": 1.7830973
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3896482,
+            "lng": 2.1659005
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3899238,
+            "lng": 2.1511635
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4223872,
+            "lng": 2.2212071
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3947475,
+            "lng": 2.1609876
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.5439491,
+            "lng": 2.2679632
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.42276409999999,
+            "lng": 2.2015347
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.33645449999999,
+            "lng": 2.1302944
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.38427009999999,
+            "lng": 2.1855573
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4321952,
+            "lng": 2.1659005
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4531556,
+            "lng": 2.181871000000001
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4023493,
+            "lng": 2.1560753
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4118532,
+            "lng": 2.1830997
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4125664,
+            "lng": 2.2113698
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4264213,
+            "lng": 2.1401139
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4839972,
+            "lng": 2.2679632
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3570442,
+            "lng": 2.1683571
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2987914,
+            "lng": 1.9930466
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.41231519999999,
+            "lng": 2.1585314
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4090402,
+            "lng": 2.1327491
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2136736,
+            "lng": 1.6614947
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4946642,
+            "lng": 2.3591531
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3795863,
+            "lng": 2.1683571
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3876262,
+            "lng": 2.0714223
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4805684,
+            "lng": 2.3147677
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3636056,
+            "lng": 2.1523914
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3896482,
+            "lng": 2.1659005
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3919671,
+            "lng": 2.1757278
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3899238,
+            "lng": 2.1511635
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2570604,
+            "lng": 1.7830973
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3947475,
+            "lng": 2.1609876
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4378689,
+            "lng": 2.196618
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.42276409999999,
+            "lng": 2.2015347
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.5439491,
+            "lng": 2.2679632
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4223872,
+            "lng": 2.2212071
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4531556,
+            "lng": 2.181871000000001
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.33645449999999,
+            "lng": 2.1302944
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.38427009999999,
+            "lng": 2.1855573
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4023493,
+            "lng": 2.1560753
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4321952,
+            "lng": 2.1659005
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4118532,
+            "lng": 2.1830997
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.41231519999999,
+            "lng": 2.1585314
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3570442,
+            "lng": 2.1683571
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4090402,
+            "lng": 2.1327491
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4839972,
+            "lng": 2.2679632
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4125664,
+            "lng": 2.2113698
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2987914,
+            "lng": 1.9930466
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4264213,
+            "lng": 2.1401139
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.2136736,
+            "lng": 1.6614947
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4235073,
+            "lng": 2.1622158
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.436921,
+            "lng": 2.1806423
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4182256,
+            "lng": 2.1769564
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.6638505,
+            "lng": 2.2581158
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4031163,
+            "lng": 2.181871000000001
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3847326,
+            "lng": 2.1609876
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4235073,
+            "lng": 2.1622158
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3847326,
+            "lng": 2.1609876
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4182256,
+            "lng": 2.1769564
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.436921,
+            "lng": 2.1806423
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4031163,
+            "lng": 2.181871000000001
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.6638505,
+            "lng": 2.2581158
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.39438190000001,
+            "lng": 2.1131154
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3790881,
+            "lng": 2.1278398
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.397617,
+            "lng": 2.1413415
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4444592,
+            "lng": 2.170351
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3722574,
+            "lng": 2.1585314
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3990479,
+            "lng": 2.1652863
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.40293,
+            "lng": 2.1917018
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4125897,
+            "lng": 2.1437968
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.40830760000001,
+            "lng": 2.1720423
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3977365,
+            "lng": 2.2015347
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3888317,
+            "lng": 2.1425692
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3819518,
+            "lng": 2.1757278
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.378633,
+            "lng": 2.1523914
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3999835,
+            "lng": 2.1487078
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.42304439999999,
+            "lng": 2.1867861
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3945632,
+            "lng": 2.1708139
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3751275,
+            "lng": 2.1388864
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4171333,
+            "lng": 2.1008486
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4444592,
+            "lng": 2.170351
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.397617,
+            "lng": 2.1413415
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3990479,
+            "lng": 2.1652863
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.39438190000001,
+            "lng": 2.1131154
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3999835,
+            "lng": 2.1487078
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3977365,
+            "lng": 2.2015347
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4171333,
+            "lng": 2.1008486
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3888317,
+            "lng": 2.1425692
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.4125897,
+            "lng": 2.1437968
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.42304439999999,
+            "lng": 2.1867861
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3819518,
+            "lng": 2.1757278
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.378633,
+            "lng": 2.1523914
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.40830760000001,
+            "lng": 2.1720423
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3945632,
+            "lng": 2.1708139
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3790881,
+            "lng": 2.1278398
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.40293,
+            "lng": 2.1917018
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3751275,
+            "lng": 2.1388864
+        }
+    },
+    {
+        "coords": {
+            "lat": 41.3795863,
+            "lng": 2.1683571
+        }
+    }
+]
+        var options = {
+            zoom: 7,
+
+            center: {
+                lat: markers[0].coords.lat,
+                lng: markers[0].coords.lng
+            }
+        }
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        // Add a marker clusterer to manage the markers.
+
+        //Add marker
+
+        
+
+        // Loop through markers
+        var gmarkers = [];
+        for (var i = 0; i < markers.length; i++) {
+            gmarkers.push(addMarker(markers[i]));
+
+        }
+
+        //Add MArker function
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+
+            });
+
+            //Check content
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+            return marker;
+        }
+        var markerCluster = new MarkerClusterer(map, gmarkers, {
+            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initMap)
+</script>
